@@ -4,7 +4,7 @@ Dynamic Reposition
 Make it easy to resize a object without having to manually move all the content to keep the margins
 
 ![Image of how it works]
-(https://www.dropbox.com/s/ka92qmhpzwv7vrc/dynamic-reposition.gif?dl=0)
+(https://www.dropbox.com/s/ka92qmhpzwv7vrc/dynamic-reposition.gif)
 
 
 ##How to install it
