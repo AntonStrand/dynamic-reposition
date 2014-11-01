@@ -1,12 +1,19 @@
 Dynamic Reposition
 ==================
 
-**Make it easy to resize a object without having to manually move all the content to keep the margins**
+Make it easy to resize a object without having to manually move all the content to keep the margins
+
+![Image of how it works]
+(https://www.dropbox.com/s/ka92qmhpzwv7vrc/dynamic-reposition.gif?dl=0)
 
 
 ##How to install it
 
-I recommend using [Sketch Toolbox](http://sketchtoolbox.com/).
+###Install manually 
+
+1. [Download the latest release](https://github.com/AntonStrand/dynamic-reposition/releases) and open it
+2. Navigate the Sketch menu bar to `Plugins ▸ Reveal Plugins Folder`
+3. Place the directory into the revealed plugins directory
 
 
 ##How to use the plugin
