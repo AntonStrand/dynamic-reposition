@@ -1,0 +1,132 @@
+// Reposition all content to still have the same margin after the background is resized (cmd p)
+
+
+// Change to use another default name;
+var bgName = 'background';
+
+var background;
+var contentLayers = [];
+
+
+// Puts all layers and groups except the background in an array.
+function getContent() {
+	var group = selection[0].layers();	
+
+	for( var i=0; i<[group count]; i++) {
+
+		if(group.array()[i].name() != bgName) {
+			contentLayers.push(group.array()[i]);
+		}
+	}
+}
+
+// fetches the positions and repostions the groups and layers.
+function positionContent() {
+	var bgX = background.frame().x();
+	var bgY = background.frame().y();
+	var bgW = background.frame().width();
+	var bgH = background.frame().height();
+
+	var margin = [];
+
+	var top;
+	var right;
+	var bottom;
+	var left;
+	
+	// Position all layers
+	for( var i=0; i<contentLayers.length; i++ ) {
+		var currentLayer = contentLayers[i];
+		var currW = [currentLayer frame].width());
+		var currH = [currentLayer frame].height();
+		var margin = [currentLayer name].split(':');
+
+		// get format offset
+		for( var j=0; j<margin.length; j+=2 ) {
+
+			switch(margin[j].toLowerCase()) {
+				case 't':
+				case 'top':
+					top = Number(margin[j+1]);		
+					break;
+
+				case 'r':
+				case 'right': 
+					right = Number(margin[j+1]);			
+					break;
+				
+				case 'b':
+				case 'bottom':
+					bottom = Number(margin[j+1]);		
+					break;
+
+				case 'l':
+				case 'left':
+					left = Number(margin[j+1]);
+					break;					
+			}
+		}
+		
+		// position layer
+		if( top    != null ) currentLayer.frame().y = bgY + top;
+		if( right  != null ) currentLayer.frame().x = (bgX + bgW) - (right + currW);
+		if( bottom != null ) currentLayer.frame().y = (bgY + bgH) - (bottom + currH);
+		if( left   != null ) currentLayer.frame().x = bgX + left;
+		// align middle
+		if( top == null && bottom == null ) currentLayer.frame().y = (bgY + bgH)*.5 - currH*.5;
+		// align center
+		if( right == null && left == null ) currentLayer.frame().x = ((bgX + bgW)*.5) - (currW*.5);
+	}
+
+}
+
+function findBackgroundByName(){
+	var group = selection[0].layers();
+
+	for( var i=0; i<[group count]; i++) {
+		
+		if(group.array()[i].name() == bgName) {
+			return group.array()[i];
+		} 
+	}
+}
+
+function findBackgroundBySize(){
+	var group = selection[0].layers();
+	var maxWidth = 0;
+	var maxHeight = 0;
+	var tempBG;
+
+	for( var i=0; i<[group count]; i++) {
+		var w = group.array()[i].frame().width();
+		var h = group.array()[i].frame().height();
+		
+		if( w > maxWidth && h > maxHeight ){
+			maxWidth = w;
+			maxHeight = h;
+			tempBG = group.array()[i];
+		}
+	}
+	tempBG.setName(bgName);
+	return tempBG;
+}
+
+
+// Needs to have a group selected to start the script.
+if( [selection count] > 0 )
+{
+	background = findBackgroundByName();
+	if( background == null ) { background = findBackgroundBySize();	}
+
+	getContent();
+	positionContent();
+} 
+else 
+{
+	alert("Nothing selected","Please select a group");
+}
+
+function alert(title, text) {
+	var app = [NSApplication sharedApplication];
+	[app displayDialog:text withTitle:title]
+}

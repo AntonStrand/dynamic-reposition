@@ -16,7 +16,7 @@ I recommend using [Sketch Toolbox](http://sketchtoolbox.com/).
 3. Select the main group.
 4. Use the plugin by pressing __cmd+p__* or select _plugins + Dynamic reposition_
 
-*__*The shortcut can easily be changed by changing the first row in the plugin*__  
+* *The shortcut can easily be changed by changing the first row in the plugin* 
 
 You'll need a background. You can either create a layer or a group called "background" or it will take the largest layer in the group and use it as the background. 
 
@@ -26,10 +26,10 @@ You'll need a background. You can either create a layer or a group called "backg
 You set the margin in the name of the layer. For instance, *t:10:l:50* will position the layer top: 10px and left: 50px.
 
 **You can set properties for:**
- * top      (*t:* or *top:*)
- * right	(*r:* or *right:*)
- * bottom	(*b:* or *bottom:*)
- * left		(*l:* or *left:*)
+ * top      ( *t:* or *top:* )
+ * right	( *r:* or *right:* )
+ * bottom	( *b:* or *bottom:* )
+ * left		( *l:* or *left:* )
 
  By not setting any properties for top or bottom it will be placed in the middle of the background. If you don't set any properties for left and right it will be centered.
 
