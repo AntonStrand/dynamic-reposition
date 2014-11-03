@@ -29,10 +29,6 @@ function positionContent() {
 
 	var margin = [];
 
-	var top;
-	var right;
-	var bottom;
-	var left;
 	
 	// Position all layers
 	for( var i=0; i<contentLayers.length; i++ ) {
@@ -40,6 +36,11 @@ function positionContent() {
 		var currW = [currentLayer frame].width());
 		var currH = [currentLayer frame].height();
 		var margin = [currentLayer name].split(':');
+
+		var top = null;
+		var right = null;
+		var bottom = null;
+		var left = null;
 
 		// get format offset
 		for( var j=0; j<margin.length; j+=2 ) {

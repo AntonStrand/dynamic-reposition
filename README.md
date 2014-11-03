@@ -9,6 +9,8 @@ Make it easy to resize a object without having to manually move all the content 
 
 ##How to install it
 
+First of all you need to have [Sketch 3](http://bohemiancoding.com/sketch/) installed.
+
 ###Install manually 
 
 1. [Download the latest release](https://github.com/AntonStrand/dynamic-reposition/releases) and open it
