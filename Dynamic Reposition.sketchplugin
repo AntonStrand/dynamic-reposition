@@ -35,7 +35,7 @@ function positionContent() {
 		var currentLayer = contentLayers[i];
 		var currW = [currentLayer frame].width());
 		var currH = [currentLayer frame].height();
-		var margin = [currentLayer name].split(':');
+		var margin = getMargins([currentLayer name]);
 
 		var top = null;
 		var right = null;
@@ -80,6 +80,23 @@ function positionContent() {
 	}
 
 }
+
+function getMargins(name) {
+	var possibleDividers = [' t:',' top:',' r:',' right:',' b:',' bottom:',' l:',' left:'];
+	var index = 0;
+
+	for(var i=0; i<possibleDividers.length; i++) {
+		
+		if(name.toLowerCase().indexOf(possibleDividers[i]) != -1) {
+			index = name.indexOf(possibleDividers[i]);
+			break;
+		}
+	}
+
+	var margins = name.slice(index).replace(/\s+/g, '');
+	return margins.split(":");
+}
+
 
 function findBackgroundByName(){
 	var group = selection[0].layers();
