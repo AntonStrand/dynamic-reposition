@@ -1,7 +1,7 @@
 Dynamic Reposition
 ==================
 
-Make it easy to resize a object without having to manually move all the content to keep the margins
+Make it easy to resize an object without having to manually move all the content to keep the margins
 
 
 
