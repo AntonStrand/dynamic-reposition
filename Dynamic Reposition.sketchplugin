@@ -78,7 +78,7 @@ function positionContent() {
 		// align center
 		if( right == null && left == null ) currentLayer.frame().x = ((bgX + bgW)*.5) - (currW*.5);
 	}
-
+	[doc showMessage:"The content have been repositioned"]
 }
 
 function getMargins(name) {
@@ -125,7 +125,6 @@ function findBackgroundBySize(){
 			tempBG = group.array()[i];
 		}
 	}
-	tempBG.setName(bgName);
 	return tempBG;
 }
 
