@@ -10,7 +10,7 @@ Make it easy to resize an object without having to manually move all the content
 
 First of all you need to have [Sketch 3](http://bohemiancoding.com/sketch/) installed.
 
-###Intall by Sketch Toolbox (recommended)
+###Install by Sketch Toolbox (recommended)
 Use [Sketch Toobox](http://sketchtoolbox.com/) to search `Dynamic Reposition` and click install.
 
 ###Install manually 
