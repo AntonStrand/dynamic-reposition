@@ -68,15 +68,21 @@ function positionContent() {
 			}
 		}
 		
+		// set new width
+		if( right != null && left != null ) currentLayer.frame().width = bgW - (left + right);
+		// set new height
+		if( top != null && bottom != null ) currentLayer.frame().height = bgH - (top + bottom);
+
 		// position layer
+		if( bottom != null ) currentLayer.frame().y = (bgY + bgH) - (bottom + currH);
 		if( top    != null ) currentLayer.frame().y = bgY + top;
 		if( right  != null ) currentLayer.frame().x = (bgX + bgW) - (right + currW);
-		if( bottom != null ) currentLayer.frame().y = (bgY + bgH) - (bottom + currH);
 		if( left   != null ) currentLayer.frame().x = bgX + left;
 		// align middle
 		if( top == null && bottom == null ) currentLayer.frame().y = (bgY + bgH)*.5 - currH*.5;
 		// align center
 		if( right == null && left == null ) currentLayer.frame().x = ((bgX + bgW)*.5) - (currW*.5);
+		
 	}
 	[doc showMessage:"The content have been repositioned"]
 }
