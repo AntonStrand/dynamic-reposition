@@ -44,6 +44,7 @@ You set the margin in the name of the layer. For instance, `My button t:10:l:50`
 
 By not setting any properties for `top` or `bottom` it will be placed in the middle of the background. If you don't set any properties for `left` and `right` it will be centered.
 
+By setting properties for both 'top' and 'bottom' or/and 'left' and 'right' the object will be stretched out to keep the right distance to the background. Make sure to not have locked proportions otherwise it wont work as it is supposed to. To have more control over resizing objects make sure to try out my other plugin, [Sketch Resize](https://github.com/AntonStrand/Sketch-Resize)
 
 **_Make sure to seperate each property with a semicolon_** `:`
 
