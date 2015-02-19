@@ -10,7 +10,7 @@ var contentLayers = [];
 
 // Puts all layers and groups except the background in an array.
 function getContent() {
-	var group = selection[0].layers();	
+	var group = selection[0].layers();
 
 	for( var i=0; i<[group count]; i++) {
 
@@ -29,18 +29,19 @@ function positionContent() {
 
 	var margin = [];
 
-	
+
 	// Position all layers
 	for( var i=0; i<contentLayers.length; i++ ) {
 		var currentLayer = contentLayers[i];
-		var currW = [currentLayer frame].width());
-		var currH = [currentLayer frame].height();
 		var margin = getMargins([currentLayer name]);
 
 		var top = null;
 		var right = null;
 		var bottom = null;
 		var left = null;
+		var width = null;
+		var height = null;
+		var fontSize = null;
 
 		// get format offset
 		for( var j=0; j<margin.length; j+=2 ) {
@@ -48,51 +49,81 @@ function positionContent() {
 			switch(margin[j].toLowerCase()) {
 				case 't':
 				case 'top':
-					top = Number(margin[j+1]);		
+					top = Number(margin[j+1]);
 					break;
 
 				case 'r':
-				case 'right': 
-					right = Number(margin[j+1]);			
+				case 'right':
+					right = Number(margin[j+1]);
 					break;
-				
+
 				case 'b':
 				case 'bottom':
-					bottom = Number(margin[j+1]);		
+					bottom = Number(margin[j+1]);
 					break;
 
 				case 'l':
 				case 'left':
 					left = Number(margin[j+1]);
-					break;					
+					break;
+
+				case 'w':
+				case 'width':
+					width = Number(margin[j+1]);
+					break;
+
+				case 'h':
+				case 'height':
+					height = Number(margin[j+1]);
+					break;
+
+				case 'fs':
+				case 'fontSize':
+					fontSize = Number(margin[j+1]);
+					break;
 			}
 		}
-		
+
+		//check if font and has a size set
+		if (currentLayer.className() == "MSTextLayer" && fontSize != null){
+			currentLayer.setFontSize(fontSize);
+			currentLayer.frame().height = currentLayer.lineSpacing();
+		}
+
 		// set new width
-		if( right != null && left != null ) currentLayer.frame().width = bgW - (left + right);
+		if( right != null && left != null && width != null ) currentLayer.frame().width = bgW - (left + right);
+
 		// set new height
-		if( top != null && bottom != null ) currentLayer.frame().height = bgH - (top + bottom);
+		if( top != null && bottom != null && height != null ) currentLayer.frame().height = bgH - (top + bottom);
+
+		// resize layer if size is set
+		if( width  != null )currentLayer.frame().width = width;
+		if( height != null) currentLayer.frame().height = height;
+
+		var currW = [currentLayer frame].width());
+		var currH = [currentLayer frame].height();
 
 		// position layer
 		if( bottom != null ) currentLayer.frame().y = (bgY + bgH) - (bottom + currH);
 		if( top    != null ) currentLayer.frame().y = bgY + top;
 		if( right  != null ) currentLayer.frame().x = (bgX + bgW) - (right + currW);
 		if( left   != null ) currentLayer.frame().x = bgX + left;
+
 		// align middle
 		if( top == null && bottom == null ) currentLayer.frame().y = (bgY + bgH)*.5 - currH*.5;
 		// align center
 		if( right == null && left == null ) currentLayer.frame().x = ((bgX + bgW)*.5) - (currW*.5);
-		
+
 	}
-	[doc showMessage:"The content have been repositioned"]
+	[doc showMessage:"The content has been repositioned."]
 }
 
 function getMargins(name) {
-	var possibleDividers = [' t:',' top:',' r:',' right:',' b:',' bottom:',' l:',' left:'];
+	var possibleDividers = [' t:',' top:',' r:',' right:',' b:',' bottom:',' l:',' left:', ' width:', ' w:', ' fontSize:', ' fs:'];
 	var index = 0;
 
 	for(var i=0; i<possibleDividers.length; i++) {
-		
+
 		if(name.toLowerCase().indexOf(possibleDividers[i]) != -1) {
 			index = name.indexOf(possibleDividers[i]);
 			break;
@@ -108,10 +139,10 @@ function findBackgroundByName(){
 	var group = selection[0].layers();
 
 	for( var i=0; i<[group count]; i++) {
-		
+
 		if(group.array()[i].name() == bgName) {
 			return group.array()[i];
-		} 
+		}
 	}
 }
 
@@ -124,7 +155,7 @@ function findBackgroundBySize(){
 	for( var i=0; i<[group count]; i++) {
 		var w = group.array()[i].frame().width();
 		var h = group.array()[i].frame().height();
-		
+
 		if( w > maxWidth && h > maxHeight ){
 			maxWidth = w;
 			maxHeight = h;
@@ -136,16 +167,13 @@ function findBackgroundBySize(){
 
 
 // Needs to have a group selected to start the script.
-if( [selection count] > 0 )
-{
+if( [selection count] > 0 ){
 	background = findBackgroundByName();
 	if( background == null ) { background = findBackgroundBySize();	}
 
 	getContent();
 	positionContent();
-} 
-else 
-{
+} else {
 	alert("Nothing selected","Please select a group");
 }
 
