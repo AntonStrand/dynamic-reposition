@@ -6,21 +6,21 @@ Make it easy to resize an object without having to manually move all the content
 ![How to img](http://i.imgur.com/mQlfsni.gif)
 
 
-##How to install it
+## How to install it
 
 First of all you need to have [Sketch 3](http://bohemiancoding.com/sketch/) installed.
 
-###Use Sketch Toolbox (recommended)
+### Use Sketch Toolbox (recommended)
 Use [Sketch Toolbox](http://sketchtoolbox.com/) to search for `Dynamic Reposition` and click install.
 
-###Install manually
+### Install manually
 
 1. [Download the latest release](https://github.com/AntonStrand/dynamic-reposition/releases) and open it
 2. Navigate the Sketch menu bar to `Plugins ▸ Reveal Plugins Folder`
 3. Place the directory into the revealed plugins directory
 
 
-##How to use the plugin
+## How to use the plugin
 
 1. Select a layer you want to use as an background and rename it to "*background*".
 2. Give all the other layers/groups inside of the same group margin properties (see below).
@@ -32,7 +32,7 @@ Use [Sketch Toolbox](http://sketchtoolbox.com/) to search for `Dynamic Repositio
 You'll need a background. You can either create a layer or a group called "background" or it will take the largest layer in the group and use it as the background.
 
 
-###Set properties
+### Set properties
 
 You set the margin in the name of the layer. For instance, `My button t:10:l:50` will position the button `top: 10px` and `left: 50px`.
 
